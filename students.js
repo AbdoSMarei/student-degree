@@ -55,7 +55,7 @@ const readStudent = (id) => {
 //function listStudent() to app
 const listStudent = () => {
     const students = loadStudent();
-    console.log(chalk.redBright.inverse('listOfNotes'));
+    console.log(chalk.redBright.inverse('listOfStudent'));
     students.forEach((student) => {
         console.log("Id : " + chalk.greenBright(student.id) + " Name : " + chalk.blueBright(student.name) + " degree : " + chalk.blueBright(student.degree))
     });
