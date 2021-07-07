@@ -56,8 +56,11 @@ const readStudent = (id) => {
 //function listStudent() to app
 const listStudent = () => {
     const students = loadStudent();
-    console.log(chalk.redBright.inverse('listOfStudents'));
-    studentClass(students);
+    console.log(chalk.redBright.inverse('listOfStudent'));
+    // students.forEach((student) => {
+    //     console.log("Id : " + chalk.greenBright(student.id) + " Name : " + chalk.blueBright(student.name) + " degree : " + chalk.blueBright(student.degree))
+    // });
+    studentClass(students)
 };
 
 //return array of object
@@ -97,7 +100,6 @@ const studentClass = (student) => {
             console.log('your degree is bad try hard!!!');
         }
     });
-
 }
 
 //export own modules
