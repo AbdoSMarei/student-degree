@@ -46,6 +46,7 @@ const readStudent = (id) => {
     });
     if (data) {
         console.log(chalk.greenBright(data.name) + " : " + chalk.blueBright(data.degree));
+        studentClass(students);
     } else {
         console.log(chalk.redBright.inverse('idIsInvaild???'))
     }
@@ -55,18 +56,17 @@ const readStudent = (id) => {
 //function listStudent() to app
 const listStudent = () => {
     const students = loadStudent();
-    console.log(chalk.redBright.inverse('listOfNotes'));
-    students.forEach((student) => {
-        console.log("Id : " + chalk.greenBright(student.id) + " Name : " + chalk.blueBright(student.name) + " degree : " + chalk.blueBright(student.degree))
-    });
+    console.log(chalk.redBright.inverse('listOfStudents'));
+    studentClass(students);
 };
 
 //return array of object
 const loadStudent = () => {
     try {
         const dataBuff = fs.readFileSync('students.json');
-        const dataJSON = dataBuff.toString()
+        const dataJSON = dataBuff.toString();
         return JSON.parse(dataJSON);
+        console.log(dataJSON);
     } catch (e) {
         return []
     }
@@ -76,6 +76,28 @@ const loadStudent = () => {
 const saveStudent = (student) => {
     const dataJSON = JSON.stringify(student);
     fs.writeFileSync('students.json', dataJSON);
+}
+
+// find student class by degree
+const studentClass = (student) => {
+    const students = loadStudent();
+    students.forEach((student) => {
+        console.log("Id : " + chalk.greenBright(student.id) + " Name : " + chalk.blueBright(student.name) + " degree : " + chalk.blueBright(student.degree));
+        if (student.degree <= 100 && student.degree >= 90) {
+            console.log('classA');
+        } else if ((student.degree < 90 && student.degree >= 80)) {
+            console.log('classB');
+        } else if ((student.degree < 80 && student.degree >= 70)) {
+            console.log('classC');
+        } else if ((student.degree < 70 && student.degree >= 60)) {
+            console.log('classD');
+        } else if ((student.degree < 60 && student.degree >= 50)) {
+            console.log('classE');
+        } else {
+            console.log('your degree is bad try hard!!!');
+        }
+    });
+
 }
 
 //export own modules
